@@ -1,0 +1,63 @@
+#include <stdio.h>
+#define SIZE 5
+int multiply(int num, int time);
+void changeNum(int* num, int* time);
+void wanttochange(char* ans);
+
+void changeNum(int* num, int* time) {
+    int changedNum;
+    printf("Enter your number");
+    scanf("%d", &changedNum);
+
+    *time = changedNum;
+}
+
+void wanttochange(char* ans) {
+    char isChanged;
+    
+    scanf("%c", &isChanged);
+    *ans = isChanged;
+}
+
+int multiply(int num, int time){
+    int multipleSum = num;
+    for (int i=1; i<time; i++){
+        multipleSum *= num;
+    }
+    return multipleSum;
+}
+
+int main() {
+
+    int inputValue=0;
+    int times=0;
+    char answer;
+    int result=0;
+
+    printf("Enter your number\n");
+    scanf("%d",&inputValue);
+
+    printf("how many times do you want to multiply?\n");
+    scanf("%d",&times);
+
+    result = multiply(inputValue, times);
+    printf("Result: %d\n",result);
+
+    printf("you want to number of times to mulitply Y/N?\n");
+    printf("Type 'y' for yes or 'n' for no\n");
+    scanf("%c",&answer);
+    
+    wanttochange(&answer);
+    
+    switch(answer){
+        case 'y':
+            changeNum(&inputValue, &times);
+            printf("now you want to mulitply %d times\n", times);
+            multiply(inputValue, times);
+        case 'n':
+            break;
+    };
+
+    return 0;
+}
+
